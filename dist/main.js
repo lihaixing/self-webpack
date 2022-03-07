@@ -1,0 +1,13 @@
+(function(graph){
+      function require(module){
+        function localRequire(relativePath){
+          return require(graph[module].dependecies[relativePath])
+        }
+        var exports = {};
+        (function(require,exports,code){
+          eval(code)
+        })(localRequire,exports,graph[module].code);
+        return exports;
+      }
+      require('/Users/lihaixing/Documents/learningDir/self-webpack/src/index.js')
+    })({"/Users/lihaixing/Documents/learningDir/self-webpack/src/index.js":{"dependecies":{"./demo.js":"/Users/lihaixing/Documents/learningDir/self-webpack/src/demo.js"},"code":"\"use strict\";\n\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && \"function\" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }, _typeof(obj); }\n\nvar _demo = _interopRequireWildcard(require(\"./demo.js\"));\n\nfunction _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== \"function\") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }\n\nfunction _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== \"object\" && typeof obj !== \"function\") { return { \"default\": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== \"default\" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj[\"default\"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }\n\nfunction f1() {\n  console.log(_demo.abc);\n  console.log('f1');\n}\n\nf1();\n(0, _demo[\"default\"])();\nconsole.log(\"loader2\");\nconsole.log(\"loader1\");"},"/Users/lihaixing/Documents/learningDir/self-webpack/src/demo.js":{"dependecies":{},"code":"\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.abc = void 0;\nexports[\"default\"] = f2;\nvar abc = 'aaa';\nexports.abc = abc;\n\nfunction f2() {\n  console.log('f2 demo');\n}\n\nconsole.log(\"loader2\");\nconsole.log(\"loader1\");"}})

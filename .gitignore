@@ -1,0 +1,2 @@
+# 忽略所有根目录 子目录的 node_modules文件夹 注意/表示目录
+node_modules/
